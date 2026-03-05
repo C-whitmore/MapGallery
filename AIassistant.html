@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>AI Assistant component (beta) | Sample | ArcGIS Maps SDK for JavaScript</title>
+    <!-- Load the ArcGIS Maps SDK for JavaScript from CDN -->
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+  </head>
+
+  <body>
+    <calcite-shell>
+      <arcgis-map id="income-map" item-id="562763a0b1274f1aaa0a4d2e5f277d43">
+        <arcgis-zoom slot="top-left"></arcgis-zoom>
+        <arcgis-expand slot="top-left">
+          <arcgis-legend></arcgis-legend>
+        </arcgis-expand>
+      </arcgis-map>
+      <calcite-shell-panel slot="panel-end" width="l" id="assistant-panel">
+        <calcite-panel>
+          <arcgis-assistant
+            log-enabled
+            copy-enabled
+            reference-element="#income-map"
+            heading="Median Disposable Income in the U.S. (2023)"
+            description="Explore county and census tract disposable income data"
+            entry-message="Hello! I'm here to help you explore disposable data in the US">
+            <arcgis-assistant-navigation-agent></arcgis-assistant-navigation-agent>
+            <arcgis-assistant-data-exploration-agent></arcgis-assistant-data-exploration-agent>
+            <arcgis-assistant-help-agent></arcgis-assistant-help-agent>
+          </arcgis-assistant>
+        </calcite-panel>
+      </calcite-shell-panel>
+    </calcite-shell>
+
+    <script type="module">
+      const assistantElement = document.querySelector("arcgis-assistant");
+      const mapElement = document.querySelector("arcgis-map");
+      assistantElement.suggestedPrompts = [
+        "Go to the county with the highest disposable income in 2023.",
+        "Go to the census tract with the least amount of disposable income in 2023.",
+        "How many counties have less disposable income than the median?",
+      ];
+    </script>
+  </body>
+</html>
